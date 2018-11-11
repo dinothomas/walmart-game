@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Contact
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="wrapper">
+
+        <ion-grid class="intro" *ngIf="intro">
+            <ion-row>
+                <ion-col class="details" [ngClass]="{ 'active-input-blue-color': activeInput }">
+                    <div class="uid" [ngClass]="{ 'active-blue': activeInput }">UID</div>
+                    <div class="uid-input">
+                        <input [(ngModel)]="uname" placeholder="U504555" (blur)="onBlur()" (focus)="onFocus()" />
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <button (click)="startTheGame()" [disabled]="uname.length < 5" class="start-btn" ion-button round>Start The Game</button>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid class="intro questions" *ngIf="!intro">
+            <ion-row>
+                <ion-col col-12 class="status">1/10</ion-col>
+                <ion-col col-12 class="timer">
+                    <div class="count">100</div>
+                    <div class="sec">SCEONDS</div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="img-div">
+                <img src="assets/imgs/quiz/abc.jpg" />
+            </ion-row>
+            <ion-row class="question">{{questions[activeQuestion].text}}</ion-row>
+            <ion-row>
+                <ion-col class="answer"></ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="ans-btns">
+                    <a href="#" *ngFor="let item of shuffledAnswer; let i = index" class="quiz-btn button purple">{{item}}</a>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+    </div>
+</ion-content>
